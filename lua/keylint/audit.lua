@@ -6,6 +6,7 @@ function M.get_plugin_keymaps()
   local plugins = lazy_config.plugins
   local keymaps = {}
 
+  -- The _, is simply lua shorthand for! We are not using the key, ignore it please.
   for _, plugin in pairs(plugins) do
     if plugin.keys then
       for _, mapping in ipairs(plugin.keys) do
