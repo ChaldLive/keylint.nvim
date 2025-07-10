@@ -1,5 +1,5 @@
 -- lua/keylint/init.lua
-
+local safe_require = require("keylint.utils").safe_require
 local M = {}
 
 -- 🔧 Plugin setup entry point (optional for future config)
@@ -9,8 +9,7 @@ function M.setup(opts)
 end
 
 -- 🌟 Load core functionality
-M.audit = require("keylint.audit")
---M.utils = require("keylint.utils")
+M.audit = safe_require("keylint.audit")
 
 -- 🚀 Developer command for running test suite
 vim.api.nvim_create_user_command("KeylintTest", function()

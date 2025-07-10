@@ -1,9 +1,10 @@
-local pickers = require("telescope.pickers")
-local finders = require("telescope.finders")
-local sorters = require("telescope.sorters")
-local actions = require("telescope.actions")
-local action_state = require("telescope.actions.state")
-local keylint = require("keylint.audit")
+local safe_require = require("keylint.utils").safe_require
+
+local finders = safe_require("telescope.finders")
+local sorters = safe_require("telescope.sorters")
+local actions = safe_require("telescope.actions")
+local action_state = safe_require("telescope.actions.state")
+local keylint = safe_require("keylint.audit")
 
 local function display_keymaps()
 	local keymaps = keylint.get_plugin_keymaps()

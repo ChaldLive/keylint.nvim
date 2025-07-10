@@ -1,10 +1,12 @@
 -- test/test_runner.lua
+print("👻 Preload audit:", package.loaded["keylint.audit"])
+package.loaded["keylint.audit"] = nil
 
+local safe_require = require("keylint.utils").safe_require
 -- 🎯 Load helper module and audit logic
-local spec = require("test.spec_helper")
---local audit = require("keylint.audit")
+local spec = safe_require("test.spec_helper")
 package.loaded["keylint.audit"] = nil -- clear any cached junk
-local audit = require("keylint.audit")
+local audit = safe_require("keylint.audit")
 print("🧠 Type of audit module:", type(audit))
 
 -- 🔧 Inject mocked plugin configuration
@@ -17,6 +19,7 @@ local expected_keys = {
 }
 
 -- 📦 Run audit against injected mock plugins
+--local audit = require("keylint.audit")
 local plugin_maps = audit.get_plugin_keymaps()
 
 -- ✅ Assert and print results
