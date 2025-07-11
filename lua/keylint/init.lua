@@ -1,3 +1,12 @@
+--[[
+  🔑 keylint.nvim — Neovim Keymap Linter
+  ☕ Version: v0.1.0
+  👑 Codename: Coffee Release
+  🧠 Motto: Seize the day, but coffee first.
+
+  A focused diagnostic tool for auditing keymaps across Lazy-loaded plugins.
+  Crafted for clarity, speed, and developer delight.
+]]
 local M = {}
 
 -- Plugin meta info
