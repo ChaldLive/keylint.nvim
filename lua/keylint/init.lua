@@ -8,10 +8,14 @@
   Crafted for clarity, speed, and developer delight.
 ]]
 local M = {}
+M.motto = "Seize the day, but coffee first."
 
 -- Plugin meta info
-M.version = require("keylint.version").version
-M.codename = require("keylint.version").codename
+
+local version = require("keylint.version")
+M.version = version.version
+M.codename = version.codename
+M.motto = version.motto
 
 -- Primary entrypoints
 M.audit = require("keylint.audit").audit
@@ -24,12 +28,18 @@ M.run = function()
 end
 
 M.manifest = function()
-  local message = string.format(
-    "Version: %s\nCodename: %s\nMotto: %s",
-    version.version,
-    version.codename,
-    version.motto or "No motto yet..."
-  )
+  local message =
+      string.format("Version: %s\nCodename: %s\nMotto: %s", M.version, M.codename, M.motto or "No motto yet...")
   vim.notify(message, vim.log.levels.INFO, { title = "☕ KeyLint Manifest" })
 end
+
+vim.api.nvim_create_user_command("KeyLintConflicts", function()
+  require("keylint.ui").show_conflicts()
+end, { desc = "Show plugin keymap conflicts in a floating window" })
+
+vim.api.nvim_create_user_command("KeyLintVersion", function()
+  local v = require("keylint.version")
+  vim.notify(string.format("🔑 KeyLint %s — %s", v.version, v.codename), vim.log.levels.INFO)
+end, { desc = "Show KeyLint version info" })
+
 return M
