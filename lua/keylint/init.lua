@@ -9,7 +9,8 @@
 ]]
 
 local M = {}
-
+-- keylint ui stuff
+require("keylint.ui")
 -- Meta
 local version = require("keylint.version")
 M.version = version.version
